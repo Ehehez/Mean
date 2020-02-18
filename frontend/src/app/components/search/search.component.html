@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<table *ngIf="users?.length > 0; else vacio" class="col-12 table" style="margin: 0 auto">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Trabajo
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>
+            {{user?.name}}
+        </td>
+        <td>
+            {{user?.address}}
+        </td>
+        <td>
+            {{user?.job}}
+        </td>
+        <td>
+            <div *ngIf="!user.followed">
+                <button (click)="followUser(user._id) && user.followed = !user.followed">Follow</button>
+            </div>
+
+            <div *ngIf="user.followed">
+                <button (click)="unfollowUser(user._id) && user.followed = !user.followed">Unfollow
+                </button>
+            </div>
+            {{user.followed}}
+        </td>
+    </tr>
+</table>
+<ng-template #vacio>
+    <div>
+        No se ha encontrado ningún resultado.
+    </div>
+</ng-template>
+<app-footer></app-footer>
