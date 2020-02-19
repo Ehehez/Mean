@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
 import { NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
+import { Store } from '@ngrx/store';
+import { AppState } from './store/app.states';
+import { Cookies } from './store/auth/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +23,8 @@ export class AppComponent implements OnDestroy, OnInit {
   private revokeChoiceSubscription: Subscription;
   private noCookieLawSubscription: Subscription;
 
-  constructor(private ccService: NgcCookieConsentService) { }
+  constructor(private ccService: NgcCookieConsentService,
+    private store: Store<AppState>) { }
 
   ngOnInit() {
     // subscribe to cookieconsent observables to react to main events
@@ -41,7 +45,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
-        console.log("statuschange")
+        this.store.dispatch(new Cookies({ cookies: true }));
       });
 
     this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(

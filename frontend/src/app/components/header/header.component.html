@@ -1,15 +1,20 @@
 <nav class="navbar navbar-dark default-color col-12"
     style="margin:0 auto; background-color:lightskyblue; margin-bottom:5px">
 
-
-    <!--<div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button (click)="logout()" ngbDropdownItem>Logout</button>
-            <button (click)="gotoMuro()" ngbDropdownItem>Placeholder</button>
-        </div>
-    </div>-->
     <img src="../../../assets/img/50.png" (click)="gotoMuro()">
+    <nav class="navbar navbar-expand-sm bg-lightskyblue">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" (click)="gotoHome()">Home</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" (click)="gotoMuro()">Muro</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" (click)="logOut()">Logout</button>
+            </li>
+        </ul>
+    </nav>
     <form class="form-inline my-2 my-lg-0 ml-auto" [formGroup]="headForm">
         <select formControlName="select" class="form-control">
             <option name="name" value="name" selected="selected" ng-selected>Nombre</option>

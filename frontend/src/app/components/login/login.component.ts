@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit() {
     const payload = {
       email: this.user.email,
-      password: this.user.password
+      password: this.user.password,
+      follows: this.user.follows,
     }
     let c;
     this.authService.logIn(payload.email, payload.password);

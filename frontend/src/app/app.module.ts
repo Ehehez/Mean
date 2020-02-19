@@ -30,11 +30,13 @@ import { TokenInterceptor, ErrorInterceptor } from './services/token.interceptor
 import { AuthGuardService } from './services/auth-guard.service';
 import { MuroComponent } from './components/muro/muro.component';
 import { FollowComponent } from './components/follow/follow.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
+import { WarningComponent } from './components/warning/warning.component';
 
 const cookieConfig: NgcCookieConsentConfig =
 {
   "cookie": {
-    "domain": "tinesoft.github.io"
+    "domain": "random.random"
   },
   "position": "bottom",
   "theme": "classic",
@@ -69,7 +71,9 @@ const cookieConfig: NgcCookieConsentConfig =
     HeaderComponent,
     FooterComponent,
     MuroComponent,
-    FollowComponent
+    FollowComponent,
+    CookiesComponent,
+    WarningComponent
   ],
   imports: [
     BrowserModule,

@@ -10,12 +10,15 @@ export interface State {
     user: User | null;
     // error message
     errorMessage: string | null;
+
+    cookies: Boolean;
 }
 
 export const initialState: State = {
     isAuthenticated: false,
     user: null,
-    errorMessage: null
+    errorMessage: null,
+    cookies: false
 };
 
 export function reducer(state = initialState, action: All): State {
@@ -27,6 +30,8 @@ export function reducer(state = initialState, action: All): State {
                 user: {
                     token: action.payload.token,
                     email: action.payload.email,
+                    follows: action.payload.follows,
+
                 },
                 errorMessage: null
             };
@@ -58,11 +63,27 @@ export function reducer(state = initialState, action: All): State {
             return {
                 ...state,
                 isAuthenticated: false,
+                user: null,
                 errorMessage: null,
+                cookies: false,
             };
 
         }
-
+        case AuthActionTypes.FOLLOWS: {
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    follows: action.payload.follows,
+                }
+            }
+        }
+        case AuthActionTypes.COOKIES: {
+            return {
+                ...state,
+                cookies: action.payload.cookies,
+            }
+        }
         default:
             return { ...state };
     }

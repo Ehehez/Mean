@@ -14,13 +14,6 @@ exports.postPost = async (body, id) => {
 exports.getPost = async () => {
     try {
         let ret = await PostModel.find({}, function (err, posts) {
-            /*var postMap = {};
-
-            posts.forEach(function (post) {
-                postMap[post._id] = post;
-            });
-
-            res.send(postMap);*/
             var postMap = [];
 
             posts.forEach(function (post) {
@@ -54,12 +47,14 @@ exports.getOwnPost = async (id) => {
 
 exports.getFollowedPost = async (user) => {
     try {
+
         var postMap = [];
         let a = await PostModel.find({}, function (err, posts) {
 
             posts.forEach(function (post) {
                 user.follows.forEach((x) => {
-                    if (post.creator_id == x._id && post.creator_id != user._id) {
+
+                    if (post.creator_id == x._id) {
                         postMap.push(post);
                     }
                 })

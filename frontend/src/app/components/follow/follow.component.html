@@ -1,1 +1,18 @@
-<p>follow works!</p>
+<td>
+    {{user?.name}}
+</td>
+<td>
+    {{user?.address}}
+</td>
+<td>
+    {{user?.job}}
+</td>
+<td>
+    <div *ngIf="follow">
+        <button class="btn btn-success" (click)="followUser(user._id)">Follow</button>
+    </div>
+    <div *ngIf="!follow">
+        <button class="btn btn-danger" (click)="unfollowUser(user._id)">Unfollow
+        </button>
+    </div>
+</td>

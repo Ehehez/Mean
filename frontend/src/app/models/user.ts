@@ -5,7 +5,7 @@ export class User {
     username?: string;
     password?: string;
     token?: { token?: string }
-    followed?: { follow?: string };
+    follows?: { follow?: string };
     address?: string;
     job?: string;
 }

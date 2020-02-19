@@ -99,11 +99,10 @@ exports.login = async function (req, res) {
 
 //Añade usuario nuevo
 exports.addUser = async (req, res) => {
-
     let user = new UserModel(req.body)
     let data = await UserService.addUser(user)
     if (data.errmsg != undefined) {
-        res.send("Ya existe un usuario con ese username/email")
+        res.send(data)
     } else res.send(data)
 
 };

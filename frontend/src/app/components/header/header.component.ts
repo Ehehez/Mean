@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppState } from 'src/app/store/app.states';
-import { State } from '@ngrx/store';
-import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AccesodbService } from 'src/app/services/accesodb.service';
+import { LogOut } from 'src/app/store/auth/auth.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
 
   state;
   headForm;
-
   options;
+  subs = new Subscription();
 
-  constructor(private store: State<AppState>,
-    private router: Router) {
+  constructor(private store: Store<AppState>,
+    private router: Router,
+    private db: AccesodbService) {
   }
 
   ngOnInit() {
@@ -36,7 +39,7 @@ export class HeaderComponent implements OnInit {
         name: "Trabajo",
         value: "job"
       }];
-    this.store.subscribe((x) => this.state = x);
+    this.subs.add(this.store.subscribe((x) => this.state = x));
     this.headForm = new FormGroup({
       select: new FormControl("", Validators.required),
       search: new FormControl("", Validators.required),
@@ -46,8 +49,20 @@ export class HeaderComponent implements OnInit {
   gotoMuro() {
     this.router.navigateByUrl('/muro');
   }
-
+  gotoHome() {
+    this.router.navigateByUrl('/');
+  }
   search() {
     this.router.navigateByUrl('/users/' + this.headForm.value.select + '/' + this.headForm.value.search);
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
+
+  logOut() {
+    this.db.logout();
+    this.store.dispatch(new LogOut());
+    this.router.navigateByUrl('/login')
   }
 }

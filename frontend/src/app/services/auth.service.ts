@@ -48,33 +48,18 @@ export class AuthService {
         this.store.dispatch(new LogInFailure(payload));
       }
     });
-    /*const body = new HttpParams()
-      .set("email", email)
-      .set("password", password);
-    const url = `http://localhost:3000/users/login`;
-    let a = await this.http.get('http://localhost:3000/users');
-
-    (async () => {
-      console.log(await a.subscribe((x) => console.log(x)))
-    })()
-    //conseguir user.
-    let c = await this.http.post(url, { 'email': email, 'password': password });
-    if (c != undefined) {
-      this.store.dispatch(new LogInSuccess(body));
-      return true;
-    } else {
-      this.store.dispatch(new LogInFailure(body));
-      return false;
-    }*/
   }
 
   signUp(username: string, email: string, password: string): Observable<User> {
-    const body = new HttpParams()
-      .set("username", username)
-      .set("email", email)
-      .set("password", password);
-    const url = `${this.BASE_URL}/auth/local/register`;
-    return this.http.post<User>(url, body);
+    const body = {
+      username: username,
+      email: email,
+      password: password
+    }
+
+
+    const url = `http://localhost:3000/users`;
+    return this.http.post(url, body);
   }
 
   getFollowers() {

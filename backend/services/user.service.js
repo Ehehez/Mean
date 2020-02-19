@@ -63,17 +63,13 @@ exports.getFollowed = async (seguidor, userMap) => {
 }
 
 exports.unsetFollowed = async (id, followed) => {
-    console.log("id: " + id + "\nfollowed: " + followed);
     let user = await User.findOne({ _id: id })
     try {
         let a = await user.follows.some((x) => x._id == followed)
-
-        console.log(user.follows)
         let pos = user.follows.findIndex(x => x._id == followed);
         if (pos != -1) {
             user.follows.splice(pos, 1);
         }
-        console.log(pos);
         let b = await user.save();
         return (b);
     }

@@ -10,3 +10,9 @@
  }
 
  .blogShort{ border-bottom:1px solid #ddd;}
+
+
+ .justify-content-center {
+    display: flex !important;
+    justify-content: center !important;
+}

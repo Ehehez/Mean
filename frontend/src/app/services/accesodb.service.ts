@@ -41,4 +41,12 @@ export class AccesodbService {
   getFollowedPosts() {
     return this.http.get('http://localhost:3000/post/followed')
   }
+
+  getUsers() {
+    return this.http.get('http://localhost:3000/users');
+  }
+
+  logout() {
+    return this.http.post('http://localhost:3000/users/me/logoutall', null)
+  }
 }

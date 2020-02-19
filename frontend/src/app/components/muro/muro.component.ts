@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppState } from 'src/app/store/app.states';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { AccesodbService } from 'src/app/services/accesodb.service';
   templateUrl: './muro.component.html',
   styleUrls: ['./muro.component.css']
 })
-export class MuroComponent implements OnInit {
+export class MuroComponent implements OnInit, OnDestroy {
 
   subs = new Subscription();
   state;
@@ -21,6 +21,8 @@ export class MuroComponent implements OnInit {
   user;
   form;
   detalles;
+  page;
+  pageSize;
 
   constructor(private store: Store<AppState>,
     private router: Router,
@@ -30,6 +32,8 @@ export class MuroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.page = 1;
+    this.pageSize = 4;
     this.subs.add(this.store.subscribe((x) => this.state = x));
     this.subs.add(this.http.get('http://localhost:3000/post/own').subscribe((x) => {
       this.posts = x;
@@ -60,4 +64,7 @@ export class MuroComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
 }

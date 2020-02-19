@@ -9,6 +9,8 @@ export enum AuthActionTypes {
     SIGNUP_SUCCESS = '[Auth] Signup Success',
     SIGNUP_FAILURE = '[Auth] Signup Failure',
     LOGOUT = '[Auth] Logout',
+    FOLLOWS = '[Auth] Update Follows',
+    COOKIES = '[Auth] Update Cookie Policy',
 }
 
 export class LogIn implements Action {
@@ -41,6 +43,16 @@ export class SignUpFailure implements Action {
     constructor(public payload: any) { }
 }
 
+export class Follows implements Action {
+    readonly type = AuthActionTypes.FOLLOWS;
+    constructor(public payload: any) { }
+}
+
+export class Cookies implements Action {
+    readonly type = AuthActionTypes.COOKIES;
+    constructor(public payload: any) { }
+}
+
 export class LogOut implements Action {
     readonly type = AuthActionTypes.LOGOUT;
 }
@@ -53,4 +65,6 @@ export type All =
     | SignUp
     | SignUpSuccess
     | SignUpFailure
-    | LogOut;
+    | Follows
+    | LogOut
+    | Cookies;

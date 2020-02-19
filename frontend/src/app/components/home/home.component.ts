@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.states';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { AccesodbService } from 'src/app/services/accesodb.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   state;
   subs = new Subscription();
@@ -23,7 +23,13 @@ export class HomeComponent implements OnInit {
   pocos;
   posts;
   listasPost = [];
-  listaPost = []
+  listaPost = [];
+  page;
+  pageSize;
+  page2;
+  pageSize2;
+
+
   constructor(private store: Store<AppState>,
     private router: Router,
     private http: HttpClient,
@@ -32,6 +38,10 @@ export class HomeComponent implements OnInit {
     private bd: AccesodbService) { }
 
   ngOnInit() {
+    this.page = 1;
+    this.pageSize = 10;
+    this.page2 = 1;
+    this.pageSize2 = 1;
     this.listaPost = [];
     this.subs.add(this.store.subscribe((x) => {
       this.state = x;
@@ -41,13 +51,11 @@ export class HomeComponent implements OnInit {
     }));
     this.subs.add(this.bd.getFollowedPosts().subscribe((x) => {
       this.posts = x;
-      console.log(this.posts)
       this.posts.forEach(y => {
         let a = this.lista.find((x) => x._id == y.creator_id && x.email != this.state.auth.user.email);
         if (a != undefined) {
           y.creator = a.email;
           this.listaPost.push(y);
-          console.log(y);
         }
       });
     }));
@@ -55,17 +63,21 @@ export class HomeComponent implements OnInit {
     this.pocos = false;
   }
 
-  async open(content, id) {
+  open(content, id) {
     this.listasPost = [];
     this.detalles = this.lista.find(element => element._id == id);
     this.listasPost = this.posts.filter(element => element.creator_id == id);
 
 
-    this.modalService.open(content);
+    this.modalService.open(content, { size: 'lg' });
 
   }
 
   swap() {
     this.pocos = !this.pocos;
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

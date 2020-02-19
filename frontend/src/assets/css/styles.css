@@ -5,8 +5,17 @@
 
 .footer {
     width:100%;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
     background-color: black;
+    height: 50px;
+}
+
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
 }

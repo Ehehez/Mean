@@ -1,0 +1,9 @@
+table {
+    min-height: 100%;
+}
+
+
+.justify-content-center {
+    display: flex !important;
+    justify-content: center !important;
+}
