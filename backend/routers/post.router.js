@@ -13,4 +13,6 @@ router.get('/post/own', auth, PostController.getOwnPost)
 
 router.get('/post/followed', auth, PostController.getFollowedPost)
 
+router.post('/post/comment', auth, PostController.setComment)
+
 module.exports = router

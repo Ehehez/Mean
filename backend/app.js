@@ -5,6 +5,7 @@ mongoose = require('mongoose');
 var user = require('./routers/user.router')
 var post = require('./routers/post.router');
 var page = require('./routers/page.router')
+var rating = require('./routers/postRating.router')
 const cors = require('cors');
 app.use(cors());
 app.options('*', cors());
@@ -26,3 +27,4 @@ mongoose.connect('mongodb://localhost:27017/app', function (err, res) {
 app.use(user);
 app.use(post);
 app.use(page);
+app.use(rating);

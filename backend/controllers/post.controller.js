@@ -36,3 +36,22 @@ exports.getFollowedPost = async (req, res) => {
     res.send(postMap);
 
 }
+
+
+exports.setComment = async (req, res) => {
+    try {
+        let user = req.user.email;
+
+        let comment = req.body.comment;
+
+        let post = req.body.post;
+
+        let result = await PostService.setComment(user, comment, post);
+
+        res.send(result);
+    }
+    catch (error) {
+        res.send(error)
+    }
+
+}

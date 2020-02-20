@@ -31,7 +31,6 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { MuroComponent } from './components/muro/muro.component';
 import { FollowComponent } from './components/follow/follow.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
-import { WarningComponent } from './components/warning/warning.component';
 
 const cookieConfig: NgcCookieConsentConfig =
 {
@@ -73,7 +72,6 @@ const cookieConfig: NgcCookieConsentConfig =
     MuroComponent,
     FollowComponent,
     CookiesComponent,
-    WarningComponent
   ],
   imports: [
     BrowserModule,

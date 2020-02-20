@@ -69,3 +69,17 @@ exports.getFollowedPost = async (user) => {
     }
 }
 
+exports.setComment = async (user, comentario, post) => {
+    try {
+
+        let postt = await PostModel.findOne({ _id: post });
+        postt.comments.push({ user_email: user, comment: comentario });
+
+        await postt.save();
+
+        return postt;
+    }
+    catch (e) {
+        return e.message;
+    }
+}

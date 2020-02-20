@@ -6,7 +6,6 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { MuroComponent } from './components/muro/muro.component';
 import { SearchComponent } from './components/search/search.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
-import { WarningComponent } from './components/warning/warning.component';
 import { RegisterComponent } from './components/register/register.component';
 
 
@@ -31,13 +30,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: "cookies",
+    path: "cms/:page",
     component: CookiesComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: "warning",
-    component: WarningComponent,
     canActivate: [AuthGuardService]
   },
   {

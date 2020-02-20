@@ -12,11 +12,8 @@ export class CookiesService {
 
   }
 
-  getPage() {
-    return this.http.get('http://localhost:3000/page/cookies');
+  getPage(params) {
+    return this.http.get('http://localhost:3000/page/' + params.page);
   }
 
-  getPageWarning() {
-    return this.http.get('http://localhost:3000/page/warning');
-  }
 }

@@ -49,4 +49,16 @@ export class AccesodbService {
   logout() {
     return this.http.post('http://localhost:3000/users/me/logoutall', null)
   }
+
+  getRatings() {
+    return this.http.get('http://localhost:3000/rating')
+  }
+
+  setRatings(payload) {
+    return this.http.post('http://localhost:3000/rating', payload);
+  }
+
+  setComment(payload) {
+    return this.http.post('http://localhost:3000/post/comment', payload);
+  }
 }

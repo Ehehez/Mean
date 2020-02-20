@@ -15,10 +15,10 @@ export class FooterComponent implements OnInit {
 
 
   gotoCookies() {
-    this.router.navigateByUrl('/cookies')
+    this.router.navigateByUrl('/cms/cookies')
   }
 
   gotoWarning() {
-    this.router.navigateByUrl('/warning')
+    this.router.navigateByUrl('/cms/warning')
   }
 }
