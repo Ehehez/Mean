@@ -61,4 +61,8 @@ export class AccesodbService {
   setComment(payload) {
     return this.http.post('http://localhost:3000/post/comment', payload);
   }
+
+  populate(id) {
+    return this.http.post('http://localhost:3000/post/populate', { post: id });
+  }
 }

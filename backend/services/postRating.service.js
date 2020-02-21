@@ -5,7 +5,7 @@ exports.postRating = async (post, user, rating) => {
 
     try {
         var postToR = await PostModel.findOne({ _id: post });
-        var total = await PostRatingModel.countDocuments({ post_id: post });
+        //var total = await PostRatingModel.countDocuments({ post_id: post });
 
         var rat;
         let placeholder = await PostRatingModel.findOne({ post_id: post, user_id: user });
@@ -22,14 +22,11 @@ exports.postRating = async (post, user, rating) => {
 
         await rat.save();
 
-        let calc = await PostRatingModel.find({ post_id: post });
-        let rate = 0;
 
-        calc.forEach((x) => {
-            rate = parseFloat(rate) + parseFloat(x.rating);
-        })
-        let asd = parseFloat(rate / calc.length).toFixed(2);
-        postToR.rating = asd
+        if (!postToR.rating.includes(rat._id)) {
+            postToR.rating.push(rat._id);
+        }
+
 
 
         await postToR.save();

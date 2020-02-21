@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postRatingSchema = new Schema({
-    post_id: { type: String },
-    user_id: { type: String },
+    post_id: { type: Schema.Types.ObjectId },
+    user_id: { type: Schema.Types.ObjectId },
     rating: { type: Number },
 
 });

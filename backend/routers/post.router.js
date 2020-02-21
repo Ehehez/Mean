@@ -15,4 +15,5 @@ router.get('/post/followed', auth, PostController.getFollowedPost)
 
 router.post('/post/comment', auth, PostController.setComment)
 
+router.post('/post/populate', PostController.populate);
 module.exports = router

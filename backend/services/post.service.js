@@ -83,3 +83,14 @@ exports.setComment = async (user, comentario, post) => {
         return e.message;
     }
 }
+
+exports.populate = async (id) => {
+    try {
+        let result = await (await PostModel.findOne({ _id: id }).populate('rating')).execPopulate();
+
+        return result;
+    }
+    catch (e) {
+        throw Error;
+    }
+}

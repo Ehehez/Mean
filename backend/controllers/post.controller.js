@@ -55,3 +55,14 @@ exports.setComment = async (req, res) => {
     }
 
 }
+
+exports.populate = async (req, res) => {
+    try {
+        let result = await PostService.populate(req.body.post);
+
+        res.send(result);
+    }
+    catch (error) {
+        res.send(error);
+    }
+}

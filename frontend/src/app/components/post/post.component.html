@@ -10,8 +10,9 @@
         <!--<ngb-rating [(rate)]="rating" [max]="5" [readonly]="true" id="total">
         </ngb-rating>-->
         <span class="float-right">{{postCreator}}</span>
+        <span *ngFor="let med of media">Valoración media: {{med.rating || 0}}</span>
         <br>
-        <span>Your Rating:</span>
+        <span>Tu valoración:</span>
         <ngb-rating [(rate)]="rat" [max]="5" (rateChange)="sendRating($event)" [readonly]="read">
         </ngb-rating>
         <button class="float-right" (click)="openComment(comentario)">Nuevo comentario</button>
@@ -43,6 +44,8 @@
             <hr>
 
         </div>
+
+        <!--<button (click)="popul()"> Populate </button>-->
     </div>
 </ng-template>
 

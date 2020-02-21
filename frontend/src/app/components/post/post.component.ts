@@ -24,6 +24,7 @@ export class PostComponent implements OnInit, OnDestroy {
   rat;
   read = true;
   form;
+  public media = [{ rating: 0 }];
 
   constructor(private store: Store<AppState>,
     private db: AccesodbService,
@@ -31,7 +32,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private toastr: ToastrService) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+
     this.subs.add(this.db.getProfile().subscribe((x) => this.user = x))
     this.subs.add(this.store.subscribe((x) => this.state = x));
     this.subs.add(this.db.getUsers().subscribe((x: any) => {
@@ -53,6 +55,18 @@ export class PostComponent implements OnInit, OnDestroy {
       });
       this.read = false;
     }))
+    /*this.subs.add(this.db.populate(this.post._id).subscribe((x: any) => {
+      console.log(x);
+      let suma = 0;
+      x.rating.forEach((x) => {
+        suma = x.rating + suma;
+      })
+      this.media = [];
+      suma = suma / x.rating.length;
+      this.media.push({ rating: parseFloat(parseFloat(suma + "").toFixed(2)) });
+
+    }))*/
+
   }
 
   ngOnDestroy() {
@@ -64,24 +78,31 @@ export class PostComponent implements OnInit, OnDestroy {
       post: this.post._id,
       rating: event
     }
-    let a = await this.subs.add(this.db.setRatings(payload).subscribe((x) => console.log(x)));
-    this.subs.add(this.db.getPosts().subscribe((x: any) => {
-      x.forEach(element => {
-        if (element._id == this.post._id) {
-          this.post.rating = element.rating;
-        }
-      });
-    }))
+    let a = await this.subs.add(this.db.setRatings(payload).subscribe((x) => {
+      this.subs.add(this.db.populate(this.post._id).subscribe((x: any) => {
+        let suma = 0;
+        x.rating.forEach((x) => {
+          suma = x.rating + suma;
+        })
+        this.media = [];
+        suma = suma / x.rating.length;
+        this.media.push({ rating: parseFloat(parseFloat(suma + "").toFixed(2)) });
+
+
+      }))
+    }));
+
+
   }
 
-  set rating(value) {
+  /*set rating(value) {
     this.post.rating = value;
   }
 
   get rating() {
     return this.post.rating;
 
-  }
+  }*/
 
   openDetails(content) {
     let value = this.post.rating;
@@ -109,4 +130,19 @@ export class PostComponent implements OnInit, OnDestroy {
     });
 
   }
+
+  /*popul() {
+    /*this.db.populate(this.post._id).subscribe((x: any) => {
+      console.log(x);
+      let suma = 0;
+      x.rating.forEach((x) => {
+        suma = x.rating + suma;
+      })
+      this.media = suma / x.rating.length;
+
+    })
+    setTimeout(() => {
+      this.media = this.media;
+    }, 1000)
+  }*/
 }

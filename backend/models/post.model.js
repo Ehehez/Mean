@@ -6,7 +6,7 @@ var postSchema = new Schema({
     content: { type: String },
     date: { type: Date },
     creator_id: { type: String },
-    rating: { type: Number, default: 0 },
+    rating: [{ type: Schema.Types.ObjectId, ref: 'PostRating' }],
     comments: [{
         comment: { type: String },
         user_email: { type: String }
