@@ -30,6 +30,16 @@ exports.getPost = async () => {
     }
 }
 
+exports.getOnePost = async (id) => {
+    try {
+        let ret = await (await PostModel.findOne({ _id: id })).populate('rating').execPopulate();
+        return ret;
+    }
+    catch (error) {
+        throw Error(error.message)
+    }
+}
+
 exports.getOwnPost = async (id) => {
 
     try {
@@ -84,13 +94,4 @@ exports.setComment = async (user, comentario, post) => {
     }
 }
 
-exports.populate = async (id) => {
-    try {
-        let result = await (await PostModel.findOne({ _id: id }).populate('rating')).execPopulate();
 
-        return result;
-    }
-    catch (e) {
-        throw Error;
-    }
-}

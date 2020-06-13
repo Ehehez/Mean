@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 import { LogIn } from 'src/app/store/auth/auth.actions';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+
 
   subs = new Subscription();
   state;
@@ -24,13 +26,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
     this.subs.add(this.store.subscribe((o) => {
       this.state = o;
     }));
+    console.log(location.pathname)
   }
 
   onSubmit() {

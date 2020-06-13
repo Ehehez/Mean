@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppState } from 'src/app/store/app.states';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -23,25 +23,41 @@ export class MuroComponent implements OnInit, OnDestroy {
   detalles;
   page;
   pageSize;
-
+  params;
+  newP = false;
   constructor(private store: Store<AppState>,
     private router: Router,
     private http: HttpClient,
     private modalService: NgbModal,
-    private accesodbService: AccesodbService
+    private accesodbService: AccesodbService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.params = this.activatedRoute.snapshot.params;
+    console.log(this.params.name);
     this.page = 1;
     this.pageSize = 4;
     this.subs.add(this.store.subscribe((x) => this.state = x));
-    this.subs.add(this.http.get('http://localhost:3000/post/own').subscribe((x) => {
-      this.posts = x;
-    }));
-    this.subs.add(this.http.get('http://localhost:3000/users/me').subscribe((x) => {
-      this.user = x;
-    }));
+    if (this.params.name == "self") {
+      this.subs.add(this.http.get('http://localhost:3000/post/own').subscribe((x) => {
+        this.posts = x;
+      }));
+      this.subs.add(this.http.get('http://localhost:3000/users/me').subscribe((x) => {
+        this.user = x;
+      }));
 
+      this.newP = true;
+    } else {
+      this.subs.add(this.http.get('http://localhost:3000/post/own').subscribe((x) => {
+        this.posts = x;
+      }));
+      this.subs.add(this.http.get('http://localhost:3000/users/me').subscribe((x) => {
+        this.user = x;
+      }));
+
+      this.newP = false;
+    }
     this.form = new FormGroup({
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),

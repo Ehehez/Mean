@@ -1,4 +1,4 @@
- .container {
+ /*.container {
     display: grid;
     grid-template-columns: 1fr 25%;
     grid-template-rows: 2fr;
@@ -7,7 +7,7 @@
     justify-items: stretch;
     align-items: stretch;
     margin-top: 20px;
- }
+ }*/
 
  .blogShort{ border-bottom:1px solid #ddd;}
 
@@ -15,4 +15,14 @@
  .justify-content-center {
     display: flex !important;
     justify-content: center !important;
+}
+
+
+
+@media (max-width:767px){
+   .container {
+      width:100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+   }
 }

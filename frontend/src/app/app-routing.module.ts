@@ -20,7 +20,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "muro",
+    path: "muro/:name",
     component: MuroComponent,
     canActivate: [AuthGuardService]
   },

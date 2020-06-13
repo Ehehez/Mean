@@ -1,0 +1,38 @@
+.noHidden {
+    display:initial;
+}
+
+@media (min-width:768px) {
+    .menuHead {
+        display: none;
+    }
+}
+
+@media (max-width:767px) {
+    .menuBotones {
+        display:none;
+        
+    }
+
+    .container {
+        padding-left: 1rem!important;
+        padding-right: 1rem!important;
+        width: 100%;
+    }
+
+    .noHidden {
+        display: initial;
+        position: absolute;
+        right:0;
+        top:50px;
+        min-width:120px!important;
+        z-index:10;
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+    }
+    .menuHead {
+        text-align: right;
+        margin-bottom:10px;
+    }
+}

@@ -1,0 +1,13 @@
+.footerPost {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.footerDetails {
+    text-align: center;
+    margin: 0 auto;
+}
+
+ngb-rating:focus {
+     outline:0 !important;
+}

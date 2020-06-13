@@ -1,24 +1,27 @@
-<div class="Site">
+<div class="container">
     <app-header></app-header>
 
-    <div class="Site-content">
-        <table *ngIf="users?.length > 0; else vacio" class="col-9 table text-center" style="margin: 0 auto">
-            <tr>
-                <th class="w-25">
+    <div class="container-fluid">
+        <table *ngIf="users?.length > 0; else vacio" class="col-12 row table text-center" style="margin: 0 auto">
+            <tr class="row col-12">
+                <th class="col-2 offset-1">
+                    Nombre de usuario
+                </th>
+                <th class="col-2">
+                    Email
+                </th>
+                <th class="col-2">
                     Nombre
                 </th>
-                <th class="w-25">
-                    Dirección
+                <th class="col-2">
+                    Apellidos
                 </th>
-                <th class="w-25">
-                    Trabajo
-                </th>
-                <th class="w-25">
+                <th class="col-2">
                     Actions
                 </th>
             </tr>
             <tr *ngFor="let user of users| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" app-follow
-                [user]="user"></tr>
+                [user]="user" class="row col-12"></tr>
         </table>
         <div class=" justify-content-center">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="users?.length"></ngb-pagination>

@@ -24,7 +24,7 @@ export class PostComponent implements OnInit, OnDestroy {
   rat;
   read = true;
   form;
-  public media = [{ rating: 0 }];
+  media;
 
   constructor(private store: Store<AppState>,
     private db: AccesodbService,
@@ -33,6 +33,11 @@ export class PostComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.subs.add(this.db.getOnePost(this.post._id).subscribe((x: any) => {
+      this.post = x;
+      this.media = this.mean(x.rating);
+
+    }))
 
     this.subs.add(this.db.getProfile().subscribe((x) => this.user = x))
     this.subs.add(this.store.subscribe((x) => this.state = x));
@@ -55,17 +60,7 @@ export class PostComponent implements OnInit, OnDestroy {
       });
       this.read = false;
     }))
-    /*this.subs.add(this.db.populate(this.post._id).subscribe((x: any) => {
-      console.log(x);
-      let suma = 0;
-      x.rating.forEach((x) => {
-        suma = x.rating + suma;
-      })
-      this.media = [];
-      suma = suma / x.rating.length;
-      this.media.push({ rating: parseFloat(parseFloat(suma + "").toFixed(2)) });
 
-    }))*/
 
   }
 
@@ -78,31 +73,15 @@ export class PostComponent implements OnInit, OnDestroy {
       post: this.post._id,
       rating: event
     }
-    let a = await this.subs.add(this.db.setRatings(payload).subscribe((x) => {
-      this.subs.add(this.db.populate(this.post._id).subscribe((x: any) => {
-        let suma = 0;
-        x.rating.forEach((x) => {
-          suma = x.rating + suma;
-        })
-        this.media = [];
-        suma = suma / x.rating.length;
-        this.media.push({ rating: parseFloat(parseFloat(suma + "").toFixed(2)) });
-
-
-      }))
+    let a = await this.subs.add(this.db.setRatings(payload).subscribe((x: any) => {
+      this.post = x;
+      this.media = this.mean(x.rating);
     }));
 
 
   }
 
-  /*set rating(value) {
-    this.post.rating = value;
-  }
 
-  get rating() {
-    return this.post.rating;
-
-  }*/
 
   openDetails(content) {
     let value = this.post.rating;
@@ -131,18 +110,18 @@ export class PostComponent implements OnInit, OnDestroy {
 
   }
 
-  /*popul() {
-    /*this.db.populate(this.post._id).subscribe((x: any) => {
-      console.log(x);
-      let suma = 0;
-      x.rating.forEach((x) => {
-        suma = x.rating + suma;
-      })
-      this.media = suma / x.rating.length;
 
+  mean(array) {
+    let sum = 0;
+    array.forEach((x) => {
+      sum += parseInt(x.rating);
     })
-    setTimeout(() => {
-      this.media = this.media;
-    }, 1000)
-  }*/
+    return sum / array.length;
+  }
+
+  checkComments() {
+    if (this.post.comments.length > 0) {
+      return true;
+    } else return false;
+  }
 }

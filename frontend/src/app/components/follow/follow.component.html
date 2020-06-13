@@ -1,13 +1,16 @@
-<td>
+<td class="col-2 offset-1">
+    {{user?.username}}
+</td>
+<td class="col-2">
+    {{user?.email}}
+</td>
+<td class="col-2">
     {{user?.name}}
 </td>
-<td>
-    {{user?.address}}
+<td class="col-2">
+    {{user?.surname}}
 </td>
-<td>
-    {{user?.job}}
-</td>
-<td>
+<td class="col-2">
     <div *ngIf="follow">
         <button class="btn btn-success" (click)="followUser(user._id)">Follow</button>
     </div>

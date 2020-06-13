@@ -36,12 +36,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     const payload = {
-      username: this.user.email,
+      username: this.user.username,
       email: this.user.email,
-      password: this.user.password
+      password: this.user.password,
+      name: this.user.name,
+      surname: this.user.surname,
     };
-    let asd;
-    this.subs.add(this.AuthService.signUp(payload.username, payload.email, payload.password).subscribe((x: any) => {
+    this.subs.add(this.AuthService.signUp(payload).subscribe((x: any) => {
       if (x.username != undefined) {
         this.router.navigateByUrl('/login');
       } else {

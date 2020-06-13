@@ -30,8 +30,8 @@ exports.postRating = async (post, user, rating) => {
 
 
         await postToR.save();
-
-        return rat;
+        await postToR.populate('rating').execPopulate();
+        return postToR;
 
 
     }

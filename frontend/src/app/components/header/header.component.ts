@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   headForm;
   options;
   subs = new Subscription();
+  menuAux = false;
 
   constructor(private store: Store<AppState>,
     private router: Router,
@@ -28,26 +29,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.options = [
       {
-        name: "Nombre",
-        value: "name"
+        name: "Username",
+        value: "username"
       },
       {
-        name: "Direccion",
-        value: "address"
+        name: "Email",
+        value: "email"
       },
       {
-        name: "Trabajo",
-        value: "job"
+        name: "Apellidos",
+        value: "surname"
       }];
     this.subs.add(this.store.subscribe((x) => this.state = x));
     this.headForm = new FormGroup({
-      select: new FormControl("", Validators.required),
+      select: new FormControl('name', Validators.required),
       search: new FormControl("", Validators.required),
     });
   }
 
   gotoMuro() {
-    this.router.navigateByUrl('/muro');
+    this.router.navigateByUrl('/muro/self');
   }
   gotoHome() {
     this.router.navigateByUrl('/');
@@ -64,5 +65,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.db.logout();
     this.store.dispatch(new LogOut());
     this.router.navigateByUrl('/login')
+  }
+
+  openMenu() {
+    this.menuAux = !this.menuAux;
+    console.log(this.menuAux);
   }
 }

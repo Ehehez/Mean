@@ -31,12 +31,17 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.pageSize = 10;
     this.subs.add(this.store.subscribe((x) => this.state = x));
     this.params = this.activatedRoute.snapshot.params;
+    console.log(this.params);
     this.subs.add(this.db.getUsersByFilter(this.params.field, this.params.value).subscribe(x => {
+      console.log(x);
       this.users = x;
       this.users = this.users.filter(x => x.email != this.state.auth.user.email);
       this.collectionSize = this.users.length;
     }));
-    this.subs.add(this.subs.add(this.db.getProfile().subscribe(x => this.user = x)));
+    this.subs.add(this.subs.add(this.db.getProfile().subscribe(x => {
+      this.user = x;
+      console.log(this.user);
+    })));
 
 
   }

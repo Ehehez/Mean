@@ -1,0 +1,16 @@
+.header {
+   margin:0 auto; 
+   background-color:lightskyblue; 
+   margin-bottom:5px
+}
+
+.todo {
+    min-height:100%!important;
+}
+
+footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}

@@ -59,7 +59,7 @@ export class AuthEffects {
         .ofType(AuthActionTypes.SIGNUP)
         .map((action: SignUp) => action.payload)
         .switchMap(payload => {
-            return this.authService.signUp(payload.username, payload.email, payload.password)
+            return this.authService.signUp(payload)
                 .map((user) => {
                     return new SignUpSuccess({ token: user.token, email: payload.email });
                 })

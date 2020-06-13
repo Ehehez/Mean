@@ -18,6 +18,14 @@ exports.getPost = async (req, res) => {
     res.send(posts);
 }
 
+exports.getOnePost = async (req, res) => {
+
+    let id = req.body.post;
+
+    let post = await PostService.getOnePost(id);
+
+    res.send(post);
+}
 exports.getOwnPost = async (req, res) => {
 
 
@@ -54,15 +62,4 @@ exports.setComment = async (req, res) => {
         res.send(error)
     }
 
-}
-
-exports.populate = async (req, res) => {
-    try {
-        let result = await PostService.populate(req.body.post);
-
-        res.send(result);
-    }
-    catch (error) {
-        res.send(error);
-    }
 }

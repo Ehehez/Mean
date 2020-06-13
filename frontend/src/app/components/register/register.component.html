@@ -17,12 +17,22 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input [(ngModel)]="user.username" name="username" type="text" required class="form-control"
-                    id="username" placeholder="enter an username">
+                    id="username" placeholder="enter your username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input [(ngModel)]="user.password" name="password" type="password" required class="form-control"
                     id="password" placeholder="enter a password">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="user.name" name="name" type="text" required class="form-control" id="name"
+                    placeholder="enter your name">
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input [(ngModel)]="user.surname" name="surname" type="text" required class="form-control" id="surname"
+                    placeholder="enter your surname">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <a [routerLink]="['/']" class="btn btn-success">Cancel</a>

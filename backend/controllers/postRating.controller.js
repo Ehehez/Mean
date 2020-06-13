@@ -7,7 +7,6 @@ exports.postRating = async (req, res) => {
 
     let rating = await PostRatingService.postRating(req.body.post, req.user._id, req.body.rating);
 
-    let a = await PostService.populate(req.body.post);
 
     res.send(rating);
 

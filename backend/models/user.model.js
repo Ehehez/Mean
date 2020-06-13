@@ -7,8 +7,7 @@ var userSchema = new Schema({
     email: { type: String, unique: true },
     username: { type: String, unique: true },
     password: { type: String },
-    job: { type: String },
-    address: { type: String },
+    surname: { type: String },
     tokens: [{
         token: { type: String },
     }],

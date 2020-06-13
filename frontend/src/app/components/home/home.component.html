@@ -1,7 +1,10 @@
 <div class="Site">
-    <app-header></app-header>
-    <div class="container Site-content">
-        <div class="flex-item">
+    <!--<div class="row">
+        <app-header class="col-12 header"></app-header>
+    </div>-->
+    <div class="row px-2">
+        <!--  Site-content -->
+        <div class="col-12 col-lg-9">
             <h2 class="justify-content-center">Lista de Posts</h2>
             <hr>
             <h3 *ngIf="listaPost?.length == 0">Vacio</h3>
@@ -10,9 +13,9 @@
                 <hr>
             </div>
         </div>
-        <div class="flex-item">
+        <div class="col-12 col-lg-3 d-lg-inline-block d-none">
 
-            <div class="card" style="width: 18rem;">
+            <div class="card col-12">
                 <div class="card-header">
                     <p class="text-center"> Usuarios seguidos</p>
                 </div>
@@ -73,14 +76,17 @@
 
                     </table>
                     <hr>
-                    <h4>Lista de Posts</h4>
-                    <div class="col-md-12 blogShort"
-                        *ngFor="let post of listasPost | slice: (page2-1) * pageSize2 : (page2-1) * pageSize2 + pageSize2">
-                        <app-post [post]="post"></app-post>
-                    </div>
-                    <div class=" justify-content-center">
-                        <ngb-pagination [(page)]="page2" [pageSize]="pageSize2" [collectionSize]="listasPost?.length">
-                        </ngb-pagination>
+                    <div *ngIf="listasPost.length > 0">
+                        <h4>Lista de Posts</h4>
+                        <div class="col-md-12 blogShort"
+                            *ngFor="let post of listasPost | slice: (page2-1) * pageSize2 : (page2-1) * pageSize2 + pageSize2">
+                            <app-post [post]="post"></app-post>
+                        </div>
+                        <div class=" justify-content-center">
+                            <ngb-pagination [(page)]="page2" [pageSize]="pageSize2"
+                                [collectionSize]="listasPost?.length">
+                            </ngb-pagination>
+                        </div>
                     </div>
                 </div>
             </div>

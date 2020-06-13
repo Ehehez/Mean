@@ -5,6 +5,7 @@ import { NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'n
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.states';
 import { Cookies } from './store/auth/auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,19 @@ export class AppComponent implements OnDestroy, OnInit {
   private noCookieLawSubscription: Subscription;
 
   constructor(private ccService: NgcCookieConsentService,
-    private store: Store<AppState>) { }
+    private store: Store<AppState>,
+    private router: Router) {
+    this.router.events.subscribe((x) => {
+      if (location.href.includes('login') || location.href.includes('register')) {
+        this.hidden = true;
+      } else {
+        this.hidden = false;
+      }
+    }
+    )
+  }
+
+  hidden = true;
 
   ngOnInit() {
     // subscribe to cookieconsent observables to react to main events

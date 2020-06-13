@@ -50,16 +50,17 @@ export class AuthService {
     });
   }
 
-  signUp(username: string, email: string, password: string): Observable<User> {
-    const body = {
+  signUp(payload): Observable<User> {
+    /*const body = {
+      name: name,
       username: username,
       email: email,
       password: password
-    }
+    }*/
 
 
     const url = `http://localhost:3000/users`;
-    return this.http.post(url, body);
+    return this.http.post(url, payload);
   }
 
   getFollowers() {

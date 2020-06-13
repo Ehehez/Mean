@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.states';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -28,14 +28,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   pageSize;
   page2;
   pageSize2;
-
+  params;
 
   constructor(private store: Store<AppState>,
     private router: Router,
     private http: HttpClient,
     private AuthService: AuthService,
     private modalService: NgbModal,
-    private bd: AccesodbService) { }
+    private bd: AccesodbService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.page = 1;

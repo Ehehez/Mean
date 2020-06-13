@@ -209,16 +209,15 @@ exports.searchUserByField = async function (field, value) {
     try {
         let users;
         switch (field) {
-            case 'name': users = await User.find({ name: new RegExp('' + value + '', "i") });
+            case 'username': users = await User.find({ username: new RegExp('' + value + '', "i") });
                 break;
-            case 'address': users = await User.find({ address: new RegExp('' + value + '', "i") });
+            case 'email': users = await User.find({ email: new RegExp('' + value + '', "i") });
                 break;
-            case 'job': await User.find({ job: new RegExp('' + value + '', "i") });
+            case 'surname': await User.find({ surname: new RegExp('' + value + '', "i") });
                 break;
             default: users = await User.find({})
                 break;
         }
-
         return users;
     }
     catch (error) {

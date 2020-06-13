@@ -38,6 +38,12 @@ export class AccesodbService {
     return this.http.get('http://localhost:3000/post');
   }
 
+  getOnePost(id) {
+    const payload = {
+      post: id,
+    }
+    return this.http.post('http://localhost:3000/post/single', payload);
+  }
   getFollowedPosts() {
     return this.http.get('http://localhost:3000/post/followed')
   }
@@ -62,7 +68,4 @@ export class AccesodbService {
     return this.http.post('http://localhost:3000/post/comment', payload);
   }
 
-  populate(id) {
-    return this.http.post('http://localhost:3000/post/populate', { post: id });
-  }
 }

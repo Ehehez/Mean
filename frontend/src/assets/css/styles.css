@@ -3,19 +3,19 @@
     margin: 0;
 }
 
-.footer {
+/*.footer {
     width:100%;
     background-color: black;
     height: 50px;
-}
+}*/
 
 
-.Site {
+/*.Site {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-}
+}*/
 
-.Site-content {
+/*.Site-content {
   flex: 1;
-}
+}*/
