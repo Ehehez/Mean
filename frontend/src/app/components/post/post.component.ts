@@ -36,6 +36,9 @@ export class PostComponent implements OnInit, OnDestroy {
     this.subs.add(this.db.getOnePost(this.post._id).subscribe((x: any) => {
       this.post = x;
       this.media = this.mean(x.rating);
+      if (isNaN(this.media)) {
+        this.media = 0;
+      }
 
     }))
 

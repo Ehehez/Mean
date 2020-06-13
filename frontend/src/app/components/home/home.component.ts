@@ -28,7 +28,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   pageSize;
   page2;
   pageSize2;
+  page3;
+  pageSize3;
   params;
+  menuAux = false;
 
   constructor(private store: Store<AppState>,
     private router: Router,
@@ -42,7 +45,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.page = 1;
     this.pageSize = 8;
     this.page2 = 1;
-    this.pageSize2 = 1;
+    this.pageSize2 = 5;
+    this.page3 = 1;
+    this.pageSize3 = 1;
     this.listaPost = [];
     this.subs.add(this.store.subscribe((x) => {
       this.state = x;
@@ -80,5 +85,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.unsubscribe();
+  }
+
+  openUsers(content) {
+    this.modalService.open(content, { size: 'lg' });
   }
 }

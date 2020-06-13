@@ -7,3 +7,13 @@ table {
     display: flex !important;
     justify-content: center !important;
 }
+
+@media (max-width:991px){
+    
+
+    .filaResponsive {
+        border:1px solid lightskyblue!important;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+}

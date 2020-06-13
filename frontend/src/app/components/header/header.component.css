@@ -2,13 +2,23 @@
     display:initial;
 }
 
-@media (min-width:768px) {
+.button-style {
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+@media (min-width:992px) {
     .menuHead {
         display: none;
     }
 }
 
-@media (max-width:767px) {
+@media (max-width:991px) {
+
+    .marginResponsive {
+        margin-top:10px;
+        margin-bottom:10px;
+    }
     .menuBotones {
         display:none;
         
