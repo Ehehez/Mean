@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = 8;
     this.page2 = 1;
     this.pageSize2 = 1;
     this.listaPost = [];

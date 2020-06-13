@@ -15,23 +15,25 @@
         </div>
         <div class="col-12 col-lg-3 d-lg-inline-block d-none">
 
-            <div class="card col-12">
-                <div class="card-header">
-                    <p class="text-center"> Usuarios seguidos</p>
-                </div>
+            <div class="col-12">
+                <h4 class="justify-content-center d-block">Usuarios Seguidos</h4>
                 <h5 *ngIf="lista?.length == 0">No sigues a ningún usuario</h5>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"
-                        *ngFor="let list of lista | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-                        Username :
-                        {{list?.username}}
-                        <button (click)="open(content,list._id)" class="btn btn-primary float-right">Ver más</button>
-                    </li>
-                </ul>
-                <div class=" justify-content-center" *ngIf="lista?.length > 0">
-                    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="lista?.length">
-                    </ngb-pagination>
+                <div *ngIf="lista?.length > 0" class="alinear">
+                    <div class=" justify-content-center">
+                        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="lista?.length">
+                        </ngb-pagination>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"
+                            *ngFor="let list of lista | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                            Username :
+                            {{list?.username}}
+                            <button (click)="open(content,list._id)" class="btn btn-primary float-right">Ver
+                                más</button>
+                        </li>
+                    </ul>
                 </div>
+
             </div>
         </div>
         <ng-template #content let-modal>
