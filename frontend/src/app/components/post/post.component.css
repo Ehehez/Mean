@@ -8,6 +8,13 @@
     margin: 0 auto;
 }
 
+.card-header {
+    background-color: #66ff33;
+}
+
+.card-footer {
+    background-color: #c6ffb3;
+}
 ngb-rating:focus {
      outline:0 !important;
 }

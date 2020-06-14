@@ -2,6 +2,11 @@
     display:initial;
 }
 
+.color-white {
+    color: white;
+    font-weight: bold;
+}
+
 .button-style {
     border: 1px solid white;
     border-radius: 5px;

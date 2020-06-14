@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>,
     private router: Router) {
     this.router.events.subscribe((x) => {
-      if (location.href.includes('login') || location.href.includes('register')) {
+      if (location.href.includes('login') || location.href.includes('signup')) {
         this.hidden = true;
       } else {
         this.hidden = false;
