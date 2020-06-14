@@ -25,6 +25,8 @@ export class PostComponent implements OnInit, OnDestroy {
   read = true;
   form;
   media;
+  page;
+  pageSize;
 
   constructor(private store: Store<AppState>,
     private db: AccesodbService,
@@ -33,6 +35,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.page = 1;
+    this.pageSize = 5;
     this.subs.add(this.db.getOnePost(this.post._id).subscribe((x: any) => {
       this.post = x;
       this.media = this.mean(x.rating);
@@ -55,10 +59,12 @@ export class PostComponent implements OnInit, OnDestroy {
     }));
     this.subs.add(this.db.getRatings().subscribe((x: any) => {
       x.forEach(element => {
-        if (element.post_id == this.post._id && element.user_id == this.user._id) {
-          this.rat = element.rating;
+        if (this.user) {
+          if (element.post_id == this.post._id && element.user_id == this.user._id) {
+            this.rat = element.rating;
 
-          return 0;
+            return 0;
+          }
         }
       });
       this.read = false;
@@ -88,7 +94,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
   openDetails(content) {
     let value = this.post.rating;
-    this.modalService.open(content);
+    this.modalService.open(content, { size: 'xl' });
 
   }
 

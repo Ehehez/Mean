@@ -32,7 +32,7 @@ import { MuroComponent } from './components/muro/muro.component';
 import { FollowComponent } from './components/follow/follow.component';
 import { CookiesComponent } from './components/cookies/cookies.component';
 
-const cookieConfig: NgcCookieConsentConfig =
+/*const cookieConfig: NgcCookieConsentConfig =
 {
   "cookie": {
     "domain": "random.random"
@@ -58,7 +58,8 @@ const cookieConfig: NgcCookieConsentConfig =
     "href": "#",
     "policy": "Cookie Policy"
   }
-}
+}*/
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +80,6 @@ const cookieConfig: NgcCookieConsentConfig =
     FormsModule,
     HttpClientModule,
     EffectsModule.forRoot([AuthEffects]),
-    NgcCookieConsentModule.forRoot(cookieConfig),
     StoreModule.forRoot(reducers, {}
     ),
     StoreDevtoolsModule.instrument({

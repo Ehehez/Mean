@@ -10,7 +10,6 @@
             <h3 *ngIf="listaPost?.length == 0">Vacio</h3>
             <div class="col-lg-12" *ngFor="let post of listaPost">
                 <app-post [post]="post"></app-post>
-                <hr>
             </div>
         </div>
         <div class="col-1 col-lg-3 position">
@@ -59,63 +58,36 @@
             </div>
         </ng-template>
         <ng-template #content let-modal>
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Detalles de {{detalles?.name}}</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="row">
+                <img src="../../../assets/img/user-placeholder.jpg" class="d-inline-block sizeImage"
+                    style="margin:0 auto; margin-bottom:15px" alt="placeholder">
             </div>
-            <div class="modal-body">
-                <div class="divtabla">
-                    <table>
-                        <tr>
-                            <th class="text-center"><label>Nombre</label></th>
-                            <td>{{detalles?.name}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center"><label>Usuario</label></th>
-                            <td>
-                                {{detalles?.username}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center"><label>Email</label></th>
-                            <td>
-                                {{detalles?.email}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center"><label>Dirección</label></th>
-                            <td>
-                                {{detalles?.address}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center"><label>Trabajo</label></th>
-                            <td>
-                                {{detalles?.job}}
-                            </td>
-                        </tr>
-
-                    </table>
-                    <hr>
-                    <div *ngIf="listasPost.length > 0">
-                        <h4>Lista de Posts</h4>
-                        <div class="col-lg-12 blogShort"
-                            *ngFor="let post of listasPost | slice: (page3-1) * pageSize3 : (page3-1) * pageSize3 + pageSize3">
-                            <app-post [post]="post"></app-post>
-                        </div>
-                        <div class=" justify-content-center">
-                            <ngb-pagination [(page)]="page3" [pageSize]="pageSize3"
-                                [collectionSize]="listasPost?.length">
-                            </ngb-pagination>
-                        </div>
-                    </div>
+            <ul class="list-group text-center">
+                <li class="list-group-item">
+                    Username :{{detalles?.username}}
+                </li>
+                <li class="list-group-item">
+                    Email : {{detalles?.email}}
+                </li>
+                <li class="list-group-item">
+                    Nombre : {{detalles?.name}}
+                </li>
+                <li class="list-group-item">
+                    Apellidos : {{detalles?.surname}}
+                </li>
+            </ul>
+            <hr>
+            <div *ngIf="listasPost.length > 0">
+                <h4>Lista de Posts</h4>
+                <div class="col-lg-12 blogShort"
+                    *ngFor="let post of listasPost | slice: (page3-1) * pageSize3 : (page3-1) * pageSize3 + pageSize3">
+                    <app-post [post]="post"></app-post>
+                </div>
+                <div class=" justify-content-center">
+                    <ngb-pagination [(page)]="page3" [pageSize]="pageSize3" [collectionSize]="listasPost?.length">
+                    </ngb-pagination>
                 </div>
             </div>
         </ng-template>
-
     </div>
-    <app-footer></app-footer>
 </div>

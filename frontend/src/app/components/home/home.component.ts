@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.listasPost = [];
     this.detalles = this.lista.find(element => element._id == id);
     this.listasPost = this.posts.filter(element => element.creator_id == id);
+    console.log(this.detalles);
 
 
     this.modalService.open(content, { size: 'lg' });

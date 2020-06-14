@@ -1,54 +1,23 @@
-<div class="col-12">
-    <!--<div class="card-header bg-transparent border-success">
-        <h4 class="text-center">{{post?.title}}</h4>
-    </div>
-    <div class="card-body text-success">
-        <p class="card-text">{{post?.content}}</p>
-    </div>
-    <div class="card-footer bg-transparent border-success">
-
-        <span class="float-right">{{postCreator}}</span>
-        <span>Valoración media: {{media}}</span>
-        <br>
-        <span>Tu valoración:</span>
-        <ngb-rating [(rate)]="rat" [max]="5" (rateChange)="sendRating($event)" [readonly]="read">
-        </ngb-rating>
-        <button class="float-right" (click)="openComment(comentario)">Nuevo comentario</button>
-        <button class="float-right" (click)="openDetails(vermas)">Ver Más</button>
-    </div>-->
+<div class="col-12 mb-2">
     <div class="card gedf-card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mr-2">
-                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                        <img class="rounded-circle" width="45" src="../../../assets/img/user-placeholder.jpg" alt="">
+                        <!--https://picsum.photos/50/50-->
                     </div>
                     <div class="ml-2">
                         <div class="h5 m-0">{{postCreator}}</div>
-                        <!--<div class="h7 text-muted">Miracles Lee Cross</div>-->
                     </div>
                 </div>
-                <!--<div>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                            <div class="h6 dropdown-header">Configuration</div>
-                            <a class="dropdown-item" href="#">Save</a>
-                            <a class="dropdown-item" href="#">Hide</a>
-                            <a class="dropdown-item" href="#">Report</a>
-                        </div>
-                    </div>
-                </div>-->
             </div>
 
         </div>
         <div class="card-body">
-            <a class="card-link" href="#">
+            <span class="card-link">
                 <h5 class="card-title">{{post?.title}}</h5>
-            </a>
+            </span>
 
             <p class="card-text">
                 {{post?.content}}>
@@ -72,33 +41,18 @@
 
 <ng-template #vermas let-modal>
     <div class="col-12">
-        <!--<div class="card-header bg-transparent border-success">
-            <h4 class="text-center">{{post?.title}}</h4>
-        </div>
-        <div class="card-body text-success">
-            <p class="card-text">{{post?.content}}</p>
-        </div>
-        <div class="card-footer bg-transparent border-success">
-            <span class="float-right">Autor:{{postCreator}}</span>
-            <span>Tu valoración</span>
-            <ngb-rating [(rate)]="rat" [max]="5" (rateChange)="sendRating($event)" [readonly]="read">
-            </ngb-rating>
-        </div>
-        <hr>-->
         <h4 class="text-center">Comentarios:</h4>
-        <div *ngIf="post.comments.length > 0">
-            <div *ngFor="let com of post.comments">
-                <!--<div class="card-header bg-transparent border-success">
-                <p>{{com.user_email}} escribió:</p>
-                <p>{{com.comment}}</p>
-            </div>
-            <hr>
-        -->
+        <div *ngIf="post.comments.length > 0" style="min-height:400px">
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="post.comments?.length">
+            </ngb-pagination>
+            <div *ngFor="let com of post.comments | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize"
+                style="border: 1px lightskyblue solid; border-radius:10px" class="mb-2">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="mr-2">
-                                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                <img class="rounded-circle" width="45" src="../../../assets/img/user-placeholder.jpg"
+                                    alt="">
                             </div>
                             <div class="ml-2">
                                 <div class="h5 m-0">{{com.user_email}}</div>
@@ -108,7 +62,6 @@
 
                 </div>
                 <div class="card-body">
-
                     <p class="card-text">
                         {{com.comment}}>
                     </p>

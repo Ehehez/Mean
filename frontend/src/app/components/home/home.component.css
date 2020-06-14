@@ -26,6 +26,10 @@
    top: 17%;
    right:5px;
 }
+.sizeImage {
+   width:200px;
+   height: auto;
+}
 
 @media (max-width:991px){
    .container {
@@ -36,6 +40,12 @@
 
    .position {
       position: relative;
+   }
+   
+   .sizeImage{
+      width: 100px;
+      max-width:100px;
+      height: auto;
    }
    /*.noHidden {
         display: inline-block;

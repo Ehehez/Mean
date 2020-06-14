@@ -66,8 +66,13 @@ export class MuroComponent implements OnInit, OnDestroy {
 
 
   newPost(content) {
+    console.log("aki")
     this.modalService.open(content);
-
+    console.log("post")
+  }
+  profile(content) {
+    this.modalService.open(content);
+    console.log("profile")
   }
 
   async onSubmit() {
