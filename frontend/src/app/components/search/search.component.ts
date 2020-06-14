@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.states';
 import { AccesodbService } from 'src/app/services/accesodb.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -20,13 +20,18 @@ export class SearchComponent implements OnInit, OnDestroy {
   page: Number;
   pageSize: Number;
   collectionSize: Number;
+  loading = true;
 
   constructor(private store: Store<AppState>,
     private db: AccesodbService,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+  ) {
+    this.subs.add(this.activatedRoute.params.subscribe((x) => this.ngOnInit()));
+  }
 
   ngOnInit() {
+    this.loading = true;
     this.page = 1;
     this.pageSize = 10;
     this.subs.add(this.store.subscribe((x) => this.state = x));
@@ -35,10 +40,14 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.users = x;
       this.users = this.users.filter(x => x.email != this.state.auth.user.email);
       this.collectionSize = this.users.length;
+
+      this.subs.add(this.subs.add(this.db.getProfile().subscribe(x => {
+        this.user = x;
+        this.loading = false;
+        console.log(this.users);
+      })));
     }));
-    this.subs.add(this.subs.add(this.db.getProfile().subscribe(x => {
-      this.user = x;
-    })));
+
 
 
   }

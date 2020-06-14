@@ -25,6 +25,8 @@ export class MuroComponent implements OnInit, OnDestroy {
   pageSize;
   params;
   newP = false;
+  loading = true;
+
   constructor(private store: Store<AppState>,
     private router: Router,
     private http: HttpClient,
@@ -34,10 +36,14 @@ export class MuroComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.params = this.activatedRoute.snapshot.params;
     this.page = 1;
     this.pageSize = 4;
-    this.subs.add(this.store.subscribe((x) => this.state = x));
+    this.subs.add(this.store.subscribe((x) => {
+      this.state = x;
+      this.loading = false;
+    }));
     if (this.params.name == "self") {
       this.subs.add(this.http.get('http://localhost:3000/post/own').subscribe((x) => {
         this.posts = x;

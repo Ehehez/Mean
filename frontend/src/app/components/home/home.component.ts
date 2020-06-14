@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   params;
   menuAux = false;
 
+  loading = true;
+
   constructor(private store: Store<AppState>,
     private router: Router,
     private http: HttpClient,
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loading = true;
     this.page = 1;
     this.pageSize = 8;
     this.page2 = 1;
@@ -64,6 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.listaPost.push(y);
         }
       });
+      this.loading = false;
     }));
 
     this.pocos = false;

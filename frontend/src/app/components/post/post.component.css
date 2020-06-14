@@ -6,6 +6,7 @@
 .footerDetails {
     text-align: center;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .card-header {

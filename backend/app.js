@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-require('./models/user.model'); //mongodb://localhost:27017/app
+require('./models/user.model'); //mongodb://localhost:27017/app mongodb://pruebas:abc123.@ds119572.mlab.com:19572/heroku_23f3w0kp
 
-mongoose.connect('mongodb://pruebas:abc123.@ds119572.mlab.com:19572/heroku_23f3w0kp', function (err, res) {
+mongoose.connect('mongodb://localhost:27017/app', function (err, res) {
     if (err) {
         console.log('ERROR: connecting to Database. ' + err);
     }
