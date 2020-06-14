@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       if (x.username != undefined) {
         this.router.navigateByUrl('/login');
       } else {
-        this.toastr.error(x.errmsg);
+        this.toastr.error("Ha ocurrido un error (Nombre de usuario o e-mail en uso)");
         this.user = new User();
       }
 

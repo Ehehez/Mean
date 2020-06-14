@@ -12,6 +12,9 @@
     background-color: #66ff33;
 }
 
+.minHeight {
+    min-height:400px;
+}
 .card-footer {
     background-color: #c6ffb3;
 }

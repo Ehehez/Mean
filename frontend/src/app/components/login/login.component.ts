@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subs.add(this.store.subscribe((o) => {
       this.state = o;
     }));
-    console.log(location.pathname)
   }
 
   onSubmit() {
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       } else {
         this.toastr.error('Usuario o contraseña incorrectos');
       }
-    }, 500)
+    }, 1000)
   }
   ngOnDestroy() {
     this.subs.unsubscribe();

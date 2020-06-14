@@ -35,7 +35,6 @@ export class MuroComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.params = this.activatedRoute.snapshot.params;
-    console.log(this.params.name);
     this.page = 1;
     this.pageSize = 4;
     this.subs.add(this.store.subscribe((x) => this.state = x));
@@ -66,13 +65,10 @@ export class MuroComponent implements OnInit, OnDestroy {
 
 
   newPost(content) {
-    console.log("aki")
     this.modalService.open(content);
-    console.log("post")
   }
   profile(content) {
     this.modalService.open(content);
-    console.log("profile")
   }
 
   async onSubmit() {

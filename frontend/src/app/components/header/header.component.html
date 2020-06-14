@@ -2,7 +2,7 @@
 
     <nav class="navbar navbar-dark default-color col-12">
         <div class="row col-1 col-md-1 menu">
-            <img src="../../../assets/img/50.png" (click)="gotoMuro()">
+            <img src="../../../assets/img/logo.png" style="height:50px; width: auto;" (click)="gotoMuro()">
         </div>
         <div class="col-2 offset-9 col-lg-4 offset-lg-0 menu row">
             <i class="fa fa-bars float-right menuHead fa-3x col-6 offset-6 d-lg-none" (click)="openMenu()"
@@ -26,7 +26,7 @@
             <input class="form-control  col-6" formControlName="search" type="search" placeholder="Search"
                 aria-label="Search">
             <button class="btn btn-outline-white btn-md my-2 my-sm-0 col-3 button-style color-white" type="submit"
-                [disabled]="!headForm.valid" (click)="search()">Search</button>
+                [disabled]="!headForm.valid" (click)="search()">Buscar</button>
         </form>
     </nav>
 

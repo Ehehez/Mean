@@ -69,6 +69,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   openMenu() {
     this.menuAux = !this.menuAux;
-    console.log(this.menuAux);
   }
 }

@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cookies',
-  template: '<div class="Site"><app-header></app-header><div class="Site-content"[innerHTML]="myContent"></div><app-footer></app-footer></div>',
+  template: '<div class="Site"><div class="Site-content"[innerHTML]="myContent"></div></div>',
   styleUrls: ['./cookies.component.css']
 })
 export class CookiesComponent implements OnInit {

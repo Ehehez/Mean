@@ -5,7 +5,7 @@
     <div class="row px-2">
         <!--  Site-content -->
         <div class="col-11 col-lg-9">
-            <h2 class="justify-content-center">Lista de Posts</h2>
+            <h2 class="justify-content-center">Muro de usuarios seguidos</h2>
             <hr>
             <h3 *ngIf="listaPost?.length == 0">Vacio</h3>
             <div class="col-lg-12" *ngFor="let post of listaPost">
@@ -16,7 +16,7 @@
             <i class="fa fa-user fa-3x col-12 d-lg-none" (click)="openUsers(users)" aria-hidden="true"></i>
             <div class="col-12 d-lg-inline-block d-none">
                 <h4 class="justify-content-center d-block">Usuarios Seguidos</h4>
-                <h5 *ngIf="lista?.length == 0">No sigues a ningún usuario</h5>
+                <h5 *ngIf="lista?.length == 0" class="text-center">No sigues a ningún usuario</h5>
                 <div *ngIf="lista?.length > 0" class="alinear">
                     <div class=" justify-content-center">
                         <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="lista?.length">
@@ -38,7 +38,7 @@
         <ng-template #users let-modal>
             <div class="col-12" [ngClass]="{ 'noHidden' : menuAux }">
                 <h4 class="justify-content-center d-block">Usuarios Seguidos</h4>
-                <h5 *ngIf="lista?.length == 0">No sigues a ningún usuario</h5>
+                <h5 *ngIf="lista?.length == 0" class="text-center">No sigues a ningún usuario</h5>
                 <div *ngIf="lista?.length > 0" class="alinear">
                     <div class=" justify-content-center">
                         <ngb-pagination [(page)]="page2" [pageSize]="pageSize2" [collectionSize]="lista?.length">
